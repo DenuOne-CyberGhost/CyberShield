@@ -6,18 +6,6 @@
 <title>CyberShield</title>
 
 <style>
-
-*{
-  box-sizing: border-box;
-}
-
-body {
-  background: red !important;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
 *{
 margin:0;
 padding:0;
@@ -165,37 +153,67 @@ border-top:1px solid #00ffcc;
 color:#666;
 }
 
-/* Desktop default */
-.features {
-  display: flex;
-  justify-content: space-around;
-  gap: 20px;
-}
-
-/* Mobile override */
-@media (max-width: 768px) {
-  .features {
-    flex-direction: column;
-    align-items: center;
-  }
+* {
+  box-sizing: border-box;
 }
 
 html, body {
   width: 100%;
+  margin: 0;
+  padding: 0;
   overflow-x: hidden;
 }
 
+/* images safe */
 img {
   max-width: 100%;
   height: auto;
+  display: block;
 }
 
+/* prevent long text overflow */
+p, h1, h2, h3, div {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* main container safety */
 .container {
   width: 100%;
   padding: 15px;
-  box-sizing: border-box;
 }
 
+/* flex safety */
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* cards */
+.features div {
+  flex: 1 1 200px;
+  max-width: 300px;
+}
+
+/* MOBILE FIX */
+@media (max-width: 768px) {
+
+  .features {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .features div {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+}
 </style>
 </head>
 
