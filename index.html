@@ -216,14 +216,15 @@ p, h1, h2, h3, div {
 }
 
 #welcome{
-    font-size:45px;
-    letter-spacing:5px;
-    white-space:nowrap;
-    overflow:hidden;
-    border-right:3px solid #00ffcc;
-    display:inline-block;
-    max-width:100%;
-    animation: typing 3s steps(22,end) forwards, blink 0.7s infinite;
+  font-size:45px;
+  letter-spacing:3px;
+  white-space:nowrap;
+  overflow:hidden;
+  display:inline-block;
+  max-width:100%;
+  padding-right:5px;
+  border-right:3px solid #00ffcc;
+  animation: typing 3s steps(22,end) forwards, blink 0.7s infinite;
 }
 
 @media (max-width: 768px){
@@ -234,6 +235,16 @@ p, h1, h2, h3, div {
     white-space:nowrap;
     max-width:100%;
     animation: typing 3s steps(22,end) forwards, blink 0.7s infinite;
+  }
+
+}
+
+@media (max-width: 768px){
+
+  #welcome{
+    font-size:26px;
+    letter-spacing:2px;
+    padding-right:8px;
   }
 
 }
