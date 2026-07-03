@@ -302,6 +302,14 @@ p, h1, h2, h3, div {
   0%,100% { opacity: 1; }
   50% { opacity: 0.4; }
 }
+
+.preload * {
+  animation-play-state: paused !important;
+}
+
+#welcome {
+  animation-fill-mode: forwards;
+}
 </style>
 </head>
 
@@ -388,7 +396,23 @@ drops[i]++;
 }
 }
 
-setInterval(draw,33);
+let matrixStarted = false;
+
+function startMatrix(){
+  if(matrixStarted) return;
+  matrixStarted = true;
+
+  initMatrix();
+  requestAnimationFrame(draw);
+}
+
+function resetMatrix(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const columns = canvas.width / 14;
+  drops = Array(Math.floor(columns)).fill(1);
+}
 </script>
 
 <script>
