@@ -370,32 +370,42 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let letters = "01CYBERSHIELDHACKERSECURITY";
-letters = letters.split("");
+let letters = "01CYBERSHIELDHACKERSECURITY".split("");
 
 const fontSize = 14;
-const columns = canvas.width / fontSize;
+let columns = Math.floor(canvas.width / fontSize);
+let drops = Array(columns).fill(1);
 
-const drops = Array(Math.floor(columns)).fill(1);
+/* draw function (single system only) */
+let lastTime = 0;
+let speed = 60; // 🔥 slower = higher number
 
-function draw(){
-ctx.fillStyle="rgba(0,0,0,0.08)";
-ctx.fillRect(0,0,canvas.width,canvas.height);
+function draw(time){
 
-ctx.fillStyle="#00ffcc";
-ctx.font = fontSize + "px monospace";
+  if(time - lastTime > speed){
+    lastTime = time;
 
-for(let i=0;i<drops.length;i++){
-let text = letters[Math.floor(Math.random()*letters.length)];
-ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+    ctx.fillStyle="rgba(0,0,0,0.08)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
 
-if(drops[i]*fontSize > canvas.height && Math.random()>0.975){
-drops[i]=0;
+    ctx.fillStyle="#00ffcc";
+    ctx.font = fontSize + "px monospace";
+
+    for(let i=0;i<drops.length;i++){
+      let text = letters[Math.floor(Math.random()*letters.length)];
+      ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+
+      if(drops[i]*fontSize > canvas.height && Math.random()>0.975){
+        drops[i]=0;
+      }
+      drops[i]++;
+    }
+  }
+
+  requestAnimationFrame(draw);
 }
-drops[i]++;
-}
-}
 
+/* START MATRIX (ONLY AFTER BOOT) */
 let matrixStarted = false;
 
 function startMatrix(){
@@ -406,22 +416,27 @@ function startMatrix(){
   requestAnimationFrame(draw);
 }
 
-function resetMatrix(){
+/* RESET MATRIX (SAFE FIX) */
+function initMatrix(){
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
-  const columns = canvas.width / 14;
-  drops = Array(Math.floor(columns)).fill(1);
+  columns = Math.floor(canvas.width / fontSize);
+  drops = Array(columns).fill(1);
 }
 
-setInterval(draw, 40);
-</script>
-
-<script>
+/* BOOT CONTROL */
 window.addEventListener("load", () => {
+
   setTimeout(() => {
+
     document.getElementById("boot-screen").style.display = "none";
+
+    // start fresh animation AFTER boot
+    startMatrix();
+
   }, 2500);
+
 });
 </script>
 
