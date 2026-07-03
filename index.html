@@ -310,6 +310,7 @@ p, h1, h2, h3, div {
   width:0;
   overflow:hidden;
   border-right:3px solid #00ffcc;
+  white-space:nowrap;
 }
 </style>
 </head>
@@ -459,6 +460,30 @@ setTimeout(() => {
   startMatrix(); // already you have this
 
   startWelcomeAnimation(); // 🔥 ADD THIS
+
+}, 2500);
+
+function startWelcomeAnimation(){
+
+  const el = document.getElementById("welcome");
+
+  // RESET FIRST (VERY IMPORTANT)
+  el.style.animation = "none";
+  el.offsetHeight; // force reflow (🔥 key trick)
+
+  // START FRESH
+  el.style.animation =
+    "typing 3s steps(22,end) forwards, blink 0.7s infinite";
+}
+
+setTimeout(() => {
+
+  document.getElementById("boot-screen").style.display = "none";
+
+  document.body.classList.remove("preload");
+
+  startMatrix();              // matrix start
+  startWelcomeAnimation();    // typing start ONLY NOW
 
 }, 2500);
 </script>
