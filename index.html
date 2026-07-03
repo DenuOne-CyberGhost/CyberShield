@@ -302,10 +302,17 @@ p, h1, h2, h3, div {
   0%,100% { opacity: 1; }
   50% { opacity: 0.4; }
 }
+
+.preload * {
+  animation-play-state: paused !important;
+  transition: none !important;
+}
 </style>
 </head>
 
 <body>
+
+<body class="preload">
 
 <div id="boot-screen">
   <h1>SYSTEM BOOTING...</h1>
@@ -395,7 +402,19 @@ window.addEventListener("load", () => {
     document.getElementById("boot-screen").style.display = "none";
   }, 2500);
 });
+
+window.addEventListener("load", () => {
+  setTimeout(() => {
+
+    document.getElementById("boot-screen").style.display = "none";
+
+    // remove preload class → animations start fresh
+    document.body.classList.remove("preload");
+
+  }, 2500);
+});
 </script>
+
 
 </body>
 </html>
