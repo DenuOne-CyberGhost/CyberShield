@@ -463,6 +463,23 @@ window.addEventListener("load", () => {
   }, 2500);
 });
 
+window.addEventListener("load", () => {
+
+  setTimeout(() => {
+
+    const boot = document.getElementById("boot-screen");
+
+    if (boot) {
+      boot.style.display = "none";
+    }
+
+    // optional safety fallback
+    document.body.classList.remove("preload");
+
+  }, 2000);
+
+});
+
 </script>
 
 
