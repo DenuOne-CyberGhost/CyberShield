@@ -229,15 +229,11 @@ p, h1, h2, h3, div {
 
 #welcome{
   font-size:45px;
-  letter-spacing:2px;
+  letter-spacing:5px;
   white-space:nowrap;
   overflow:hidden;
-  display:inline-block;
-  max-width:100%;
-  padding:0 15px;
-  box-sizing:border-box;
   border-right:3px solid #00ffcc;
-  animation: typing 3s steps(22,end) forwards, blink 0.7s infinite;
+  width:0;
 }
 
 @media (max-width: 768px){
@@ -438,6 +434,11 @@ window.addEventListener("load", () => {
   }, 2500);
 
 });
+
+function startTyping(){
+  document.getElementById("welcome").style.animation =
+  "typing 3s steps(22,end) forwards, blink 0.7s infinite";
+}
 </script>
 
 </body>
